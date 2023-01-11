@@ -2,6 +2,7 @@ package org.ieti.TcaciovDaniel;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Main {
@@ -15,8 +16,20 @@ public class Main {
         String[] headers = excelService.getHeaders();
         String[][] content = excelService.getContent();
 
-        TableBuilder tableBuilder = new TableBuilder();
-        tableBuilder.buildTable(content, headers);
+        TableBuilder tableBuilder = new TableBuilder(content, headers);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+
+                JFrame frame = new JFrame("Row Filter");
+                frame.add(tableBuilder);
+                frame.pack();
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            }
+
+        });
 
     }
 
