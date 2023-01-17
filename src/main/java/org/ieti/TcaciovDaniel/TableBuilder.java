@@ -81,7 +81,6 @@ public class TableBuilder extends JPanel {
                 return c;
             }
         });
-return;
 
     }
 
